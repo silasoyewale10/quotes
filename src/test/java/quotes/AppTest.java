@@ -5,6 +5,10 @@ package quotes;
 
 import org.junit.Test;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Arrays;
 
 import static org.junit.Assert.*;
@@ -25,4 +29,26 @@ public class AppTest {
         Quote name = App.getFileArray()[0];
         assertEquals ("Marilyn Monroe", name.author);
     }
+    @Test
+    public void testNewQuote() {
+        Quote quote = new Quote ("Me", "Quotey McQuoteFace");
+        assertEquals("Author should be Me", "Me", quote.getAuthor());
+                assertEquals("Text should be Quotey McQuoteFace", "Quotey McQuoteFace", quote.getText());
+    }
+    @Test public void testNewInternetQuoteAddedToJsonFile() throws IOException {
+
+        File before = new File("src/main/resources/newJasonFile.json");
+        long time1 = before.lastModified();
+        System.out.println("time1 = " + time1);
+
+        App.addToCurrentJsonFile();
+
+        File after = new File("src/main/resources/newJasonFile.json");
+        long time2 = after.lastModified();
+        System.out.println(time2);
+
+        assertFalse(time1==time2);
+
+    }
+
 }

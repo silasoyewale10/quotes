@@ -57,7 +57,7 @@ public class App {
         Gson gson = new Gson();
         InternetQuote q = goOnInternetGetQuote();
         BufferedWriter writer = new BufferedWriter(new FileWriter ("src/main/resources/newJasonFile.json", true));
-        writer.write(gson.toJson(q));
+        writer.write(gson.toJson(q));  // q is
 
         writer.close();
     }
